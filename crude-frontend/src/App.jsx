@@ -1,17 +1,33 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import NavBar from './components/NavBar'
 import TableList from './components/TableList'
+import ModalForm from './components/ModalForm'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalMode, setModalMolde] = useState("add");
 
+  const handleOpen = (mode) => {
+    setModalMolde(mode);
+    setIsOpen(true);
+  }
+
+  const handleSubmit = () => {
+    if (modalMode === "add"){
+      console.log("modal mode add");
+    } else {
+      console.log("modal mode edit");
+      
+    }     
+  } 
   return (
     <>
-      <NavBar />
-      <TableList />
+      <NavBar onOpen={() => handleOpen("add")}/>
+      <TableList  handleOpen={handleOpen}/>
+      <ModalForm isOpen={isOpen} onSubmit={handleSubmit}
+      onClose={() => setIsOpen(false)}
+      mode={modalMode}/>
     </>
   )
 }
