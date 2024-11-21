@@ -1,9 +1,10 @@
-export default function TableList(){
+export default function TableList({handleOpen}){
+
 
     const clients = [
-        {id: 1, name: "John Doe", email: "johndoe@gmail.com", job: "Developer", status: "Active"},
-        {id: 2, name: "Tim Can", email: "timcan@gmail.com", job: "DevOps Engineer", status: "Active"},
-        {id: 3, name: "Lee Zhan", email: "zhanlee@gmail.com", job: "Project Manager", status: "false"}
+        {id: 1, name: "John Doe", email: "johndoe@gmail.com", job: "Developer", status: true },
+        {id: 2, name: "Tim Can", email: "timcan@gmail.com", job: "DevOps Engineer", status: true },
+        {id: 3, name: "Lee Zhan", email: "zhanlee@gmail.com", job: "Project Manager", status: false }
     ]
     return(
         <>
@@ -26,9 +27,12 @@ export default function TableList(){
                 <td>{clients.name}</td>
                 <td>{clients.email}</td>
                 <td>{clients.job}</td>
-                <td>{clients.status}</td>
                 <td>
-                    <button className="btn btn-secondary">Delete</button>
+                    {clients.status ? 'Active' : 'Inactive'}
+                </td>
+                    
+                <td>
+                    <button className="btn btn-secondary" onClick={() => handleOpen('edit')}>Update</button>
                 </td>
                 <td>
                     <button className="btn btn-accent">Delete</button>
