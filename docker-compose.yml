@@ -1,0 +1,53 @@
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    hostname: postgres
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=client_db
+    ports:
+      - 5432:5432
+    networks:
+      - my-network
+    volumes:
+      - ./postgres.db:/var/lib/postgresql/data 
+
+  backend:
+    container_name: crud-backend
+    restart: unless-stopped
+    image: crud-backend:1.0.0
+    build:
+      context: crud-backend
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - my-network
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://postgres:123@postgres:5432/client_db
+
+  frontend:
+    container_name: crud-frontend
+    restart: unless-stopped
+    image: crud-frotend:1.0.0
+    build:
+      context: crud-frontend
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - 5173:5173
+    networks:
+      - my-network
+    depends_on:
+      - backend
+    environment:
+    - VITE_BACKEND_URL=http://backend:3000
+
+networks:
+  my-network:
+    driver: bridge

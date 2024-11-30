@@ -2,7 +2,7 @@ FROM node:latest AS Production
 
 ENV node_env=Production
 
-WORKDIR /crud-frontend/src
+WORKDIR /crud-frontend
 
 COPY package.json .
 COPY package-lock.json .
@@ -11,6 +11,4 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
-
-CMD [ "sh", "-c", "npm run dev" ]
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
