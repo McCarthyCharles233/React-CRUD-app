@@ -26,12 +26,12 @@ jobs:
 
       - name: Navigate to backend directory
         run: |
-          cd React-CRUD-app/crud-backend
+          cd ./crud-backend
           npm install
 
       - name: Navigate to frontend directory
         run: |
-          cd React-CRUD-app/crud-frontend
+          cd ./crud-frontend
           npm install
           npm install @vitejs/plugin-react@latest
           npm ls @vitejs/plugin-react
