@@ -2,9 +2,11 @@ name: Installing Dependencies
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches: 
+    - main
   pull_request:
-    branches: [ $default-branch ]
+    branches: 
+    - main
 
 jobs:
   build:
@@ -18,12 +20,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Install Vite dependency
-        run: npm install @vitejs/plugin-react@latest
-
-      - name: Verify installation
-        run: npm ls @vitejs/plugin-react
+        run: |
+          npm install
+          npm install @vitejs/plugin-react@latest
+          npm ls @vitejs/plugin-react
