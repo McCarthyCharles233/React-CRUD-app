@@ -24,8 +24,14 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
 
-      - name: Install dependencies
+      - name: Navigate to backend directory
         run: |
+          cd React-CRUD-app/crud-backend
+          npm install
+
+      - name: Navigate to frontend directory
+        run: |
+          cd React-CRUD-app/crud-frontend
           npm install
           npm install @vitejs/plugin-react@latest
           npm ls @vitejs/plugin-react
