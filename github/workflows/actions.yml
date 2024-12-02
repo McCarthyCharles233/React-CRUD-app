@@ -1,0 +1,31 @@
+name: Installing Dependencies
+
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - name: Checkout code
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      uses: actions/setup-node@v4
+
+    - run: npm install
+
+    - name: Install Vite dependency
+      run: npm install @vitejs/plugin-react@latest
+
+    - name: Verify installation
+      run: npm ls @vitejs/plugin-react
