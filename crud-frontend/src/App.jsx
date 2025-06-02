@@ -22,7 +22,6 @@ function App() {
       try {
         const response = await axios.post('http://localhost:3000/api/clients', newClientData)
         console.log("Client added:", response.data); 
-        window.location.reload();
       } catch (err) {
         console.error("Error adding Client:", err)
     }
@@ -33,7 +32,6 @@ function App() {
       try {
         const response = await axios.put(`http://localhost:3000/api/clients/${clientData.id}`, newClientData)
         console.log("Client updated:", response.data); 
-        window.location.reload();
       } catch (err) {
         console.error("Error updating Client:", err)
     }
