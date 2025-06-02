@@ -1,6 +1,6 @@
-FROM node:latest AS Production
+FROM node:latest AS production
 
-ENV node_env=Production
+ENV node_env=production
 
 WORKDIR /crud-frontend
 
