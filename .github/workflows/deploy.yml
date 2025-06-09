@@ -63,4 +63,4 @@ jobs:
       with:
         cluster: ${{ secrets.ECS_CLUSTER_NAME }}
         service: ${{ secrets.ECS_SERVICE_NAME }}
-        task-definition: ${{ steps.render-task.outputs.task-definition-arn }}
+        task-definition: ${{ steps.render-task.outputs.task-definition }}
