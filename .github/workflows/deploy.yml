@@ -29,12 +29,12 @@ jobs:
 
     - name: Build and push frontend image
       run: |
-        docker build -t $ECR_FRONTEND ./frontend
+        docker build -t $ECR_FRONTEND ./crud-frontend
         docker push $ECR_FRONTEND
 
     - name: Build and push backend image
       run: |
-        docker build -t $ECR_BACKEND ./backend
+        docker build -t $ECR_BACKEND ./crud-backend
         docker push $ECR_BACKEND
 
     - name: Prepare task definition with new images
