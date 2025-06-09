@@ -27,6 +27,12 @@ jobs:
     - name: Login to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Create ECR repositories if they don't exist
+      run: |
+        aws ecr describe-repositories --repository-names frontend || aws ecr create-repository --repository-name frontend
+        aws ecr describe-repositories --repository-names backend || aws ecr create-repository --repository-name backend
+    
+
     - name: Build and push frontend image
       run: |
         docker build -t $ECR_FRONTEND ./crud-frontend
